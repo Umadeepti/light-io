@@ -1,0 +1,31 @@
+div.arrow {
+    margin-top: 10px;
+	margin-bottom: 10px;
+	font-weight: bold;
+	height:40px;
+    background:#e9e9e9;
+    color:#000000;
+    position:relative;
+    width:200px;
+    text-align:center;
+    line-height:40px;
+}
+
+div.arrow:after{
+	content:"";
+    position:absolute;
+    height:0;
+    width:0;
+    left:100%;
+    top:0;
+    border:20px solid transparent;
+    border-left: 20px solid #e9e9e9;
+}
+
+div.arrow.highlighted {
+	background: green;
+}
+
+div.arrow.highlighted:after {
+	border-left: 20px solid green;
+}

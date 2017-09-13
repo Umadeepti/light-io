@@ -1,0 +1,54 @@
+/*
+div{
+  font-family:Verdana, Geneva, sans-serif;
+  color:#222222;
+  padding-left:12%;
+  padding-right:12%;
+}
+
+#loading{
+  color: gray;
+}
+
+button.add-button {
+  padding: 7px;
+  border: none;
+  background: none;
+}
+
+.search{
+  width:100%;
+  border-radius:4px;
+  font-size:13px;
+  padding:2px;
+}
+
+:host /deep/ ng2-smart-table {
+    width:75%;
+    margin: auto;
+    font-size:14px;
+}
+:host /deep/ ng2-smart-table tbody > tr:nth-child(odd) > td {
+    background-color:#a3a3a3;
+}
+:host /deep/ ng2-smart-table tbody > tr > td{
+    border:1.4px solid #555;
+    width:25%;
+} 
+*/
+
+.row.search{
+  margin-bottom: 30px;
+}
+
+/deep/ ng2-smart-table table.table tr th, /deep/ ng2-smart-table table.table tr td {
+    font-size: inherit;
+    margin: auto;
+    padding: .75rem;
+}
+/deep/ ng2-smart-table tr{
+  cursor: pointer;
+}
+/deep/ ng2-smart-table .ng2-smart-filters{
+  display:none;
+}

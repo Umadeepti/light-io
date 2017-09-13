@@ -1,0 +1,121 @@
+<div>
+  <form class="form-horizontal">
+    <fieldset>
+      <div class="row">
+        <div class='col-md-6'>
+          <div class="form-group">
+            <label for="oppName">Name *</label>
+            <input [(ngModel)]="opp.summary.name" (ngModelChange)="checkRequiredFields()" id="oppName" name="oppName" type="text" placeholder="" class="form-control field" required>
+          </div>
+
+          <div class="form-group">
+            <label for="account">Account/Client/Sub *</label>
+            <div class="input-group">
+            <select  required
+            [compareWith]="compareObjectsById" [(ngModel)]="opp.summary.account" (ngModelChange)="accountSelect()"id="account" name="account" class="form-control field">
+              <option *ngFor="let account of opp.summary.accounts" [ngValue]="account">
+                {{account.name}}
+              </option>
+            </select>
+            <span class="input-group-addon">/</span>
+            <select required
+            [compareWith]="compareObjectsById" [(ngModel)]="opp.summary.client" (ngModelChange)="clientSelect()" id="client" name="client" class="form-control field">
+              <option *ngFor="let client of opp.summary.account?opp.summary.account.clients:[]" [ngValue]="client">
+                {{client.name}}
+              </option>
+            </select>
+            <span class="input-group-addon">/</span>
+            <select (click)="printOpp()" [compareWith]="compareObjectsById" required
+            [(ngModel)]="opp.summary.subClient" (ngModelChange)="checkRequiredFields()" id="sub" name="sub" class="form-control field">
+              <option *ngFor="let subClient of opp.summary.client?opp.summary.client.subClients:[]" [ngValue]="subClient">
+                {{subClient.name}}
+              </option>
+            </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="primeCheckbox">Prime</label>
+            <div class="input-group">
+              <app-dom-checkbox name="primeCheckbox" 
+              [(isChecked)]="opp.summary.prime">
+              </app-dom-checkbox>
+            </div>
+          </div>
+          <div class="form-group">   
+            <label class="control-label" for="proposalDueDate">Proposal Due</label>
+            <app-dom-datepicker name="proposalDueDate" id="proposalDueDate" 
+            [(date)]='opp.summary.proposalDueDate.date' type="text">
+            </app-dom-datepicker>
+          </div>
+          <div class="form-group">   
+            <label class="control-label" for="estAwardDate">Est Award</label>
+            <app-dom-datepicker name="estAwardDate" id="estAwardDate" 
+             [(date)]='opp.summary.estAwardDate.date' type="text">
+            </app-dom-datepicker>
+          </div>
+          <div class='form-group'>
+            <label for="winProbability">Win Probability</label>
+            <div class="input-group">
+              <span class="input-group-addon">%</span>
+              <input [(ngModel)]="opp.summary.winProbability" id="winProbability" name="winProbability" class="form-control field" placeholder="" type="text">
+            </div>
+          </div>
+        </div>
+        <div class='col-md-6'>
+          <div class="form-group">
+            <label for="owner">Owner *</label>
+            <select [(ngModel)]="opp.summary.owner" (ngModelChange)="checkRequiredFields()" required 
+            [compareWith]="compareObjectsById" id="owner" 
+            name="owner" class="form-control field">
+              <option *ngFor="let person of opp.summary.people" [ngValue]="person">
+                {{person.firstName + ' ' + person.lastName}} 
+              </option>
+        </select>
+          </div>
+          <div class="form-group">
+            <label for="stage">Stage *</label>
+            <select [(ngModel)]="opp.summary.stage" (ngModelChange)="checkRequiredFields()" required
+            id="stage" name="stage" class="form-control field">
+              <option *ngFor="let stage of opp.summary.stages">
+                 {{stage}}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="status">Status *</label>
+            <select [(ngModel)]="opp.summary.status" (ngModelChange)="checkRequiredFields()" required
+            id="status" name="status" class="form-control field">
+              <option *ngFor="let status of opp.summary.statuses">
+                 {{status}}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="type">Type *</label>
+            <select [(ngModel)]="opp.summary.awardType" (ngModelChange)="checkRequiredFields()"  required
+            id="type" name="type" class="form-control field">
+              <option *ngFor="let type of opp.summary.awardTypes">
+                {{type}}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="idInput">GovWin</label>
+            <div class="input-group">
+              <input [(ngModel)]="opp.summary.govWinId" id="idInput" name="idInput" type="text" placeholder="ID" class="form-control field">
+              <span class="input-group-addon"></span>
+              <input [(ngModel)]="opp.summary.govWinLink" id="urlInput" name="urlInput" type="text" placeholder="URL" class="form-control field">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fbo">FBO</label>
+            <input [(ngModel)]="opp.summary.fboLink" id="fbo" name="fbo" type="text" placeholder="URL" class="form-control field">
+          </div>
+
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>

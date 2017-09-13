@@ -1,0 +1,93 @@
+<div class="modal-header">
+    <h4 class="modal-title">Pursue / Don't Pursue
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal">
+    <fieldset>
+    <div class="row">
+        <div class="col-md-9"></div>
+        <div class="col-md-1">Yes</div>
+        <div class="col-md-2">No</div>
+    </div>
+    <!-- Multiple Radios (inline) -->
+    <div class="form-group">
+        <div class="row">
+            <label class="col-md-9 control-label" for="pastPerformancesRadios">Do we have Past Performances?</label>
+            <div class="col-md-1">
+                <input type="radio" name="pastPerformancesYes" id="pastPerformancesYes" 
+                    [(ngModel)]="oppPursue.pastPerformance" [value]="true">
+            </div>
+            <div class="col-md-2">
+                <input type="radio" name="pastPerformancesNo" id="pastPerformancesNo" 
+                    [(ngModel)]="oppPursue.pastPerformance" [value]="false" checked="checked">
+            </div>
+        </div>
+    </div>
+        
+    <!-- Multiple Radios (inline) -->
+    <div class="form-group">
+        <div class="row">
+            <label class="col-md-9 control-label" for="alignmentRadios">Does this align with our solutions?</label>
+            <div class="col-md-1">
+                <input type="radio" name="alignmentRadiosYes" 
+                    id="alignmentYes" [(ngModel)]="oppPursue.alignSolutions" [value]="true" checked="checked">
+            </div>
+            <div class="col-md-2">
+                <input type="radio" name="alignmentRadiosNo" 
+                    id="alignmentNo" [(ngModel)]="oppPursue.alignSolutions" [value]="false">
+            </div>
+        </div>
+    </div>
+
+    <!-- Multiple Radios (inline) -->
+    <div class="form-group">
+        <div class="row">
+            <label class="col-md-9 control-label" for="priceCompetitiveRadios">Can we be price competitive?</label>
+            <div class="col-md-1">
+                <input type="radio" name="priceCompetitiveYes" id="priceCompetitiveYes" 
+                    [(ngModel)]="oppPursue.priceCompetitive" [value]="true" checked="checked">
+            </div>
+            <div class="col-md-2">
+                <input type="radio" name="oppPursue.priceCompetitiveNo" id="priceCompetitiveNo" 
+                    [(ngModel)]="oppPursue.priceCompetitive" [value]="false">
+            </div>
+        </div>
+    </div>
+
+    <!-- Multiple Radios (inline) -->
+    <div class="form-group">
+        <div class="row">
+            <label class="col-md-9 control-label" for="bpBudgetAmountRadios">B/P $$ required?</label>
+            <div class="col-md-1">
+                <input type="radio" name="bpBudgetAmountYes" id="bpBudgetAmountYes" 
+                    [(ngModel)]="oppPursue.bpBudgetAmount" [value]="true" checked="checked">
+            </div>
+            <div class="col-md-2">
+                <input type="radio" name="oppPursue.bpBudgetAmountNo" id="bpBudgetAmountNo" 
+                    [(ngModel)]="oppPursue.bpBudgetAmount" [value]="false">
+            </div>
+        </div>
+    </div>
+        
+    <!-- Textarea -->
+    <div class="form-inline form-group">
+        <label class="col-xs-2 col-sm-2 col-md-2 control-label" 
+            for="notesTextArea">Notes</label>
+        <textarea class="col-xs-10 col-sm-10 col-md-10 form-control" 
+            id="notesTextArea" [(ngModel)]="oppPursue.notes" name="notesTextArea"></textarea>        
+    </div>
+    </fieldset>
+    </form>
+</div>
+<div class="modal-footer">
+    <button  type="button" [disabled]="!allRadiosSelected()" class="btn btn-secondary" 
+        (click)="onPursueClick(oppPursue)">Pursue</button>
+    <button  type="button" [disabled]="!allRadiosSelected()" 
+        class="btn btn-secondary" (click)="onPursuePass(oppPursue)">Pass</button>
+    <button type="button" class="btn btn-secondary" 
+        (click)="onPursueCancel()">Cancel</button>
+</div>

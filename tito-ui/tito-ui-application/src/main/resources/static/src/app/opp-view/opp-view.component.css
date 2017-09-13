@@ -1,0 +1,51 @@
+:host /deep/ .panel-content .form-group{
+    display: inline-block;
+    width:100%;
+}
+:host /deep/ .panel-content .inline-label{
+    width:45%;
+}
+:host /deep/ .panel-content .search{
+    width:100%;
+    float:none;
+}
+:host /deep/ .panel-content .input-group, 
+:host /deep/ .panel-content .field,
+:host /deep/ .panel-content .checkbox-container{
+    width:55%;
+    float:right;
+}
+:host /deep/ .panel-content .checkbox-container{
+    height: calc(2.25rem + 2px);
+}
+:host /deep/ .panel-content .checkbox-container input{
+    width: initial;
+    float: left;
+}
+:host /deep/ .panel-content .input-group #idInput{
+    width:25%;
+}
+:host /deep/ .panel-content .input-group #urlInput{
+    width:75%;
+}
+:host /deep/ .panel-content .input-group .dropdown-menu{
+    /*left:initial!important;*/
+    right:0;
+}
+:host /deep/ .form-footer .buttons{
+    float:right;
+}
+:host /deep/ ngb-alert{
+    position:fixed;
+    top:10px;
+    right:10px;
+    z-index:2;
+}
+div.viewHeader {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+:host /deep/ ngb-accordion > div.card > div.card-body{
+    padding:30px;
+}
+

@@ -1,0 +1,4 @@
+/deep/ .input-group{ /* fix stuff applied in summary component - use normal bootstrap */
+    width: auto !important;
+    float: none !important;
+}

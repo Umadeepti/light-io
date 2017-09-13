@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+.new_partner {
+	width: 100% !important;
+}
+
+.new_competitor {
+	width: 100% !important;
+}
+
+.percentage {
+	width: 100% !important;
+}
+
+.opp_checkbox {
+	width: 100% !important;
+}
+button.glyph-button {
+    padding: 7px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+.row.header{
+	font-weight:bold;
+}
+ss-multiselect-dropdown.form-control{
+	border: none;
+	padding: 0px;
+}
+ss-multiselect-dropdown.form-control > div, ss-multiselect-dropdown.form-control > div > button{
+	width: 100%;
+}
+ss-multiselect-dropdown.form-control > div > button{
+	text-align: left;
+}
+ss-multiselect-dropdown.form-control > div > button.dropdown-toggle::after{
+	float: right;
+    margin-top: 6px;
+}
+ss-multiselect-dropdown.form-control > div > button{
+	border: 1px solid rgba(0,0,0,.15);
+	border-color: rgba(0,0,0,.15);
+}

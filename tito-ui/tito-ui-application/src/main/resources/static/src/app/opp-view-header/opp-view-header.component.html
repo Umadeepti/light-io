@@ -1,0 +1,35 @@
+<div class="viewHeader row">
+    <div class="col-md-6">
+      <span class="row leftPadding" id="oppBreakdown" >
+        {{opp.summary.account.name}} / {{opp.summary.client.name}} / {{opp.summary.subClient.name}}
+      </span>
+      <span class="row leftPadding">
+        <h5 id="summaryNameHeader">{{opp.summary.name}}</h5>
+      </span>      
+    </div>
+    <div class="col-md-1">
+      <h6>Proposal Due</h6>
+      <span id="propDueDateDisplay">
+        {{opp.summary.proposalDueDate.date | date: 'MM/dd/yyyy'}}
+      </span>      
+    </div>
+    <div class="col-md-1">
+      <h6>Est Award</h6>
+      <span id="estAwardDateDisplay"> 
+        {{opp.summary.estAwardDate.date | date: 'MM/dd/yyyy'}}
+      </span>
+    </div>
+    <div class="col-md-1">
+      <h6>Exp Contract</h6>
+      <span id="formattedExpContractVal">
+        {{opp.details.contractValueExpected | currency:'USD':true:'1.2-2' }}
+      </span>  
+    </div>
+    <div class="col-md-1">
+      <h6 id="ownerHeader">Owner</h6>
+      <span id="ownerName">
+        {{opp.summary.owner.firstName}} {{opp.summary.owner.lastName}}
+      </span>
+    </div>
+  </div>
+  <dom-status-bar [opp]="opp"></dom-status-bar>

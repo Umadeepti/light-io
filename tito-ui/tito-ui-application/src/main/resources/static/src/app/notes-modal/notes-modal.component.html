@@ -1,0 +1,20 @@
+<div class="modal-header">
+    <h4 class="modal-title">Notes
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="form" novalidate>
+
+    	<div class="form-group">
+    		<textarea class="form-control" formControlName="{{notesField}}" rows="3"></textarea>
+  		</div>
+
+    </form>
+</div>
+<div class="modal-footer">
+    <button  type="button" class="btn btn-secondary" (click)="submit(form)">Done</button>
+    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+</div>

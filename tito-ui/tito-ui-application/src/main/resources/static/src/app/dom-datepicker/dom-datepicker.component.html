@@ -1,0 +1,9 @@
+<div class="input-group">
+  <input ngbDatepicker #dp="ngbDatepicker" 
+  class="form-control field"
+  [minDate]="{year: 2000, month: 1, day: 1}" 
+  [maxDate]="{year: 2099, month: 12, day: 31}"
+  [ngModel]="date" (ngModelChange)="change($event)"
+  placeholder="mm/dd/yyyy">
+  <span class="input-group-addon fa fa-calendar" (click)="dp.toggle()"></span>
+</div>

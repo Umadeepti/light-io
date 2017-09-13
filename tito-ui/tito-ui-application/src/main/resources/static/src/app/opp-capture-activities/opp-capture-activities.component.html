@@ -1,0 +1,57 @@
+<div class="container-fluid">
+	<div class="col-md-12">
+		<div class="col-md-1">
+		<span class="fa fa-plus" (click)="addCapture($event)"></span>	
+	</div>
+		<div class="row">
+			<div class="col-md-1"></div>	<!-- Completion checkbox -->
+			<div class="col-md-4">Activity</div>
+			<div class="col-md-4">Due</div>
+			<div class="col-md-1"></div>	<!-- Notes -->
+			<div class="col-md-1"></div>	<!-- Delete -->
+		</div>
+	
+		<div *ngFor="let activity of opp.captureActivities.activities" class="row spacedRow">
+			<div class="col-md-1 checkbox">
+	            <app-dom-checkbox ngDefaultControl [(isChecked)]="activity.status">
+				</app-dom-checkbox>
+	        </div>
+			<div class="col-md-4">
+				<input class="form-control" type="text" 
+					id="activity" [(ngModel)]="activity.activity">
+			</div>
+			<div class="input-group col-md-4">
+				<input ngbDatepicker #dp="ngbDatepicker" [minDate] = "{year: 2000, month: 1, day: 1}" [maxDate] = "{year: 2099, month: 12, day: 31}"
+	              [(ngModel)]="activity.date"
+	              id="activityDueDate" class="form-control"
+	              name="activityDueDate" placeholder="mm/dd/yyyy" type="text">
+				<span class="input-group-addon fa fa-calendar" (click)="dp.toggle()"></span>
+			</div>
+			<div class="col-md-1">
+				<ng-template #content let-c="close" let-d="dismiss">
+					<div class="modal-header">
+						<h4 class="modal-title"> Note</h4>
+						<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+					      <span aria-hidden="true">&times;</span>
+					    </button>
+					</div>
+					<div class="modal-body">
+	<!--{{ activity.note }}-->
+	 <textarea [(ngModel)]="activity.note" class="form-control" 
+                                         id="notesTextArea" name="notesTextarea"></textarea>
+					</div>
+					<div class="modal-footer">
+						<button  type="button"  class="btn btn-default" (click)="onCapNoteSave(opp)">Save</button>
+						<button type="button" class="btn btn-default" (click)="c('Close click')">Close</button>
+					</div>
+				</ng-template>
+				<span class="fa fa-pencil-square-o" aria-hidden="true" (click)="openModal(content)"></span>
+			</div>
+			<div class="col-md-1">
+				<span class="fa fa-trash" aria-hidden="true" (click)="delCapture($event,activity.id)"></span>
+			</div>
+		</div>
+	</div>
+</div>
+
+

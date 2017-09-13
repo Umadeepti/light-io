@@ -1,0 +1,48 @@
+<div *ngIf="opp">
+  <div class="viewHeader">
+    <opp-view-header [opp]="opp"></opp-view-header>
+      <button type="button" class="btn btn-primary" (click)="showPursueModal(opp)">Pursue</button>
+      <button type="button" class="btn btn-primary" (click)="showBidModal(opp)" [disabled]="!captureActivities">Bid</button>
+    
+  </div>
+  <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" 
+        activeIds="summaryPanel">
+      <ngb-panel title="Summary" id="summaryPanel">
+        <ng-template ngbPanelContent>
+          <app-opp-summary class="panel-content" 
+          [opp]="formattedOpp"></app-opp-summary>
+        </ng-template>
+      </ngb-panel>
+      <ngb-panel title="Details" id="detailsPanel">
+        <ng-template ngbPanelContent>
+          <app-opp-details class="panel-content" [opp]="formattedOpp"></app-opp-details>
+        </ng-template>
+      </ngb-panel>
+      <ngb-panel title="Landscape" id="landscapePanel">
+        <ng-template ngbPanelContent>
+          <app-opp-landscape (oppChange)="onOppChange()" 
+            [(opp)]="formattedOpp" class="panel-content"></app-opp-landscape>
+        </ng-template>
+      </ngb-panel>
+      <ngb-panel [disabled]="!captureActivities" 
+        title="Capture Activities" id="captureActivitiesPanel">
+        <ng-template ngbPanelContent>
+        	<app-opp-capture-activities class="panel-content" [opp]="formattedOpp"></app-opp-capture-activities>
+        </ng-template>
+      </ngb-panel>
+      <ngb-panel title="Staffing" id="staffingPanel">
+        <ng-template ngbPanelContent>
+
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+    <div class="form-footer">
+      <div class="buttons">
+        <button type="button" class="btn btn-secondary" 
+          (click)="save()">Save</button>
+        <button type="button" class="btn btn-secondary" 
+          (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+    <app-dom-notification [timeout]='5000'></app-dom-notification>
+  </div>

@@ -1,0 +1,85 @@
+<div>
+  <form class="form-horizontal">
+    <fieldset>
+      <div class='row'>
+        <!--Left Column-->
+        <div class='col-md-6'>
+          <div class='form-group'>
+            <label for="description">Description</label>
+            <textarea [(ngModel)]="opp.details.description" class="form-control" 
+              id="descriptionTextArea" name="descriptionTextarea"></textarea>
+          </div>
+          <div class='form-group'>
+            <label for="totContractValue">Tot Contract Value</label>
+            <div class="input-group">
+              <span class="input-group-addon">$</span>
+              <input id="totContractValue" name="totContractValue" 
+                class="form-control field" placeholder="" type="text" 
+                [(ngModel)]="opp.details.contractValueTotal">
+            </div>
+          </div>
+          <div class='form-group'>
+            <label for="expContractValue">Exp Contract Value</label>
+            <div class="input-group">
+              <span class="input-group-addon">$</span>
+              <input id="expContractValue" name="expContractValue" 
+                class="form-control field" placeholder="" type="text" 
+                [(ngModel)]="opp.details.contractValueExpected">
+            </div>
+          </div>
+          <div class='form-group'>
+            <label for="annualValue">Annual Value</label>
+            <div class="input-group">
+              <span class="input-group-addon">$</span>
+              <input class="form-control field" id="annualValue" name="annualValue" 
+                required="true" type="text" 
+                [(ngModel)]="opp.details.annualValue"/>    
+            </div>          
+          </div>
+          <div class="form-group">  
+            <label class="control-label" for="evenDistributionCheckbox">Even Distribution</label>
+            <div class="input-group">
+              <app-dom-checkbox name="evenDistributionCheckbox" 
+                ngDefaultControl [(isChecked)]="opp.details.evenDistribution">
+              </app-dom-checkbox>
+            </div>
+          </div>
+        </div>
+        
+        <!--Right Column-->
+        <div class='col-md-6'>
+          <div class='form-group'>
+            <label for="description">Notes</label>
+            <textarea [(ngModel)]="opp.details.note.note" class="form-control" 
+              id="notesTextArea" name="notesTextarea"></textarea>
+          </div>
+          <div class="form-group">
+              <label class="control-label" for="projectStartDate">Consult Start </label>
+              <div class="input-group">
+              <input ngbDatepicker #dp1="ngbDatepicker" [minDate] = "{year: 2000, month: 1, day: 1}" 
+                [maxDate] = "{year: 2099, month: 12, day: 31}"
+                [(ngModel)]="opp.details.projectStartDate" id="projectStartDate"
+                name="projectStartDate" class="form-control field" placeholder="mm/dd/yyyy">
+              <span class="input-group-addon fa fa-calendar" (click)="dp1.toggle()"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="projectEndDate">Consult End </label>
+            <div class="input-group">
+              <input ngbDatepicker #dp2="ngbDatepicker" [minDate] = "{year: 2000, month: 1, day: 1}" 
+                [maxDate] = "{year: 2099, month: 12, day: 31}"
+                [(ngModel)]="opp.details.projectEndDate" id="projectEndDate"
+                name="projectEndDate" class="form-control field" placeholder="mm/dd/yyyy">
+              <span class="input-group-addon fa fa-calendar" (click)="dp2.toggle()"></span>
+            </div>
+          </div>
+          <div class='form-group'>
+            <label for="solutionsSelect">Solution(s)</label>
+            <ss-multiselect-dropdown id="solutionsSelect" name="solutionsSelect" class="input-group form-control field" [(ngModel)]="tempSolutions" [options]="solutionsOptions" (ngModelChange)="solutionSelected($event)"></ss-multiselect-dropdown>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>

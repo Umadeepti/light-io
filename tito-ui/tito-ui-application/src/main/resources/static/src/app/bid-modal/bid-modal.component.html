@@ -1,0 +1,137 @@
+<div class="modal-header">
+    <h4 class="modal-title">Bid / No Bid
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="form" novalidate>
+	    
+	    <div class="form-group row">
+	        <div class="col-9"></div>
+	        <div class="col-1">Yes</div>
+	        <div class="col-2">No</div>
+	    </div>
+	    <!-- Multiple Radios (inline) -->
+
+
+	    <div class="form-group row">
+            <label class="col-9 col-form-label" for="crediblePrime">Can we prime?</label>
+            <div class="col-1">
+				<input type="radio" formControlName="crediblePrime" 
+				 [value]="true" [required]="crediblePrime !== true || crediblePrime !== false">
+            </div>
+            <div class="col-2">
+				<input type="radio" formControlName="crediblePrime" 
+				 [value]="false" [required]="crediblePrime !== true || crediblePrime !== false">
+            </div>
+	    </div>
+	        
+	    <!-- Multiple Radios (inline) -->
+	    <div class="form-group row">
+	            <label class="col-9 col-form-label" for="priceCompetitive">Can we price to win?</label>
+	            <div class="col-1">
+					<input type="radio" formControlName="priceCompetitive" 
+					 [value]="true" [required]="priceCompetitive !== true || priceCompetitive !== false">
+	            </div>
+	            <div class="col-2">
+					<input type="radio" formControlName="priceCompetitive" 
+					 [value]="false" [required]="priceCompetitive !== true || priceCompetitive !== false">
+	            </div>
+	    </div>
+
+	    <!-- Multiple Radios (inline) -->
+	    <div class="form-group row">
+	            <label class="col-9 col-form-label" for="teamAssembled">Is our Team assembled?</label>
+	            <div class="col-1">
+					<input type="radio" formControlName="teamAssembled" 
+					 [value]="true" [required]="teamAssembled !== true && teamAssembled !== false">
+	            </div>
+	            <div class="col-2">
+					<input type="radio" formControlName="teamAssembled" 
+					 [value]="false" [required]="teamAssembled !== true && teamAssembled !== false">
+	            </div>
+	    </div>
+
+	    <div class="form-group row">
+	        <label class="col-6 col-form-label" for="bpBudgetAmount">Bid Proposal $$?</label>
+	        <div class="col-6">
+	        	<input type="number" class="form-control" formControlName="bpBudgetAmount" placeholder="$" required>
+	        </div>
+	    </div>
+
+	    <div class="card form-group">
+		  	<div class="card-body">
+		    	<h6 class="mb-2 text-muted">Landscape</h6>
+		    	<table class="table table-striped">
+			    	<thead>
+				    	<tr>
+				    		<th>Partners</th>
+				    		<th>Excl</th>
+				    		<th>NDA</th>
+				    		<th>TA</th>
+				    		<th>%</th>
+				    	</tr>
+			    	</thead>
+			    	<tbody>
+				    	<tr *ngFor="let item of opportunity.landscape.partners">
+				    		<td>{{item.firm.name}}</td>
+				    		<td class="checkbox">
+								Exclusive: {{item.exclusive}}
+				    			<app-dom-checkbox ngDefaultControl [isChecked]="item.exclusive" [isDisabled]="true">
+            					</app-dom-checkbox>
+				    		</td>
+				    		<td class="checkbox">
+				    			<app-dom-checkbox ngDefaultControl [isChecked]="item.signedNda" [isDisabled]="true">
+            					</app-dom-checkbox>
+				    		</td>
+				    		<td class="checkbox">
+				    			<app-dom-checkbox ngDefaultControl [isChecked]="item.signedTa" [isDisabled]="true">
+            					</app-dom-checkbox>
+				    		</td>
+				    		<td class="checkbox">
+				    			<app-dom-checkbox ngDefaultControl [isChecked]="item.workshare" [isDisabled]="true">
+            					</app-dom-checkbox>
+				    		</td>
+				    	</tr>
+				    	<tr *ngIf="!opportunity.landscape.partners.length">
+				    		<td colspan="5">None</td>
+				    	</tr>
+			    	</tbody>
+		    	</table>
+			  	<table class="table table-striped">
+			    	<thead>
+				    	<tr>
+				    		<th>Competitors</th>
+				    	</tr>
+			    	</thead>
+			    	<tbody>
+				    	<tr *ngFor="let item of opportunity.landscape.competitors">
+				    		<td>{{item.firm.name}}</td>
+				    	</tr>
+				    	<tr *ngIf="!opportunity.landscape.competitors.length">
+				    		<td colspan="4">None</td>
+				    	</tr>
+			    	</tbody>
+		    	</table>
+		  	</div>
+		</div>
+
+	    <div class="form-group row">
+	        <label class="col-2 col-form-label" for="notes">Notes</label>
+	        <div class="col-10">
+	        	<textarea class="form-control" formControlName="notes"></textarea>
+	        </div>        
+	    </div>
+
+    </form>
+</div>
+<div class="modal-footer">
+    <button  type="button" [disabled]="!form.valid" class="btn btn-secondary" 
+        (click)="form.value.bid = true;submit(form)">Bid</button>
+    <button  type="button" [disabled]="!form.valid" 
+        class="btn btn-secondary" (click)="form.value.bid = false;submit(form)">No Bid</button>
+    <button type="button" class="btn btn-secondary" 
+        (click)="cancel()">Cancel</button>
+</div>

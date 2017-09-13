@@ -1,0 +1,6 @@
+<div class="row">
+  <div *ngFor="let stage of statusBarStages" class="col">
+    <dom-status-triangle [name]="stage" 
+      [isHighlighted]="isHighlighted(statusBarStages.indexOf(stage))"></dom-status-triangle>
+  </div>
+</div>

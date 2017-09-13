@@ -1,0 +1,43 @@
+<ng-template #rt let-r="result" let-t="term">
+  {{ r.name }}
+</ng-template>
+
+<div class="input-group">
+  	<input id="typeahead-template" type="text" class="form-control" [(ngModel)]="searchModel" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" 
+		placeholder="Search for Competitor">
+  	<span class="input-group-btn">
+    	<button class="btn btn-secondary" type="button" (click)="addCompetitor($event)">
+    		<i class="fa fa-plus"></i>
+    	</button>
+  	</span>
+</div>
+
+<div *ngIf="!opp.landscape.competitors.length; else competitors">None</div>
+<ng-template #competitors>
+	<div class="row header hidden-xs-down">
+		<div class="col-9">Competitor</div>
+		<div class="col-1">Inc</div>
+		<div class="col-1"></div>
+		<div class="col-1"></div>
+	</div>
+	<div *ngIf="opp">
+		<div *ngFor="let competitor of opp.landscape.competitors" class="row">
+			<div class="col-12 col-sm-9">{{competitor.firm.name}}</div>
+			<div class="col-1 checkbox">
+				<app-dom-checkbox (isCheckedChange)="isIncumbentClicked(competitor)" 
+                	ngDefaultControl [isChecked]="isIncumbent(competitor.firm)">
+            	</app-dom-checkbox>
+			</div>
+			<div class="col-1">
+				<button type="button" class="glyph-button" [hidden]="!competitor.id" (click)="addNote(competitor)">
+					<span class="fa fa-sticky-note-o"></span>
+				</button>
+			</div>
+			<div class="col-1">
+				<button type="button" class="glyph-button" [hidden]="!competitor.id" (click)="removeCompetitor(competitor)">
+					<span class="fa fa-trash"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+</ng-template>

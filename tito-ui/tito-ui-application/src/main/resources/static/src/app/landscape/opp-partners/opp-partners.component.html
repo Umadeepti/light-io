@@ -1,0 +1,66 @@
+<ng-template #rt let-r="result" let-t="term">
+  {{ r.name }}
+</ng-template>
+
+
+<div class="input-group">
+  	<input id="typeahead-template" type="text" class="form-control" [(ngModel)]="searchModel" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" placeholder="Search for Partner">
+  	<span class="input-group-btn">
+    	<button class="btn btn-secondary" type="button" (click)="addPartner($event)">
+    		<i class="fa fa-plus"></i>
+    	</button>
+  	</span>
+</div>
+
+<div *ngIf="!opp.landscape.partners.length; else partners">None</div>
+
+<ng-template #partners>
+	<div class="row header hidden-xs-down">
+		<div class="col-5">Partner</div>
+		<div class="col-1">Excl</div>
+		<div class="col-1">NDA</div>
+		<div class="col-1">TA</div>
+		<div class="col-1">WS</div>
+		<div class="col-1">Prime</div>
+		<div class="col-1"></div>
+		<div class="col-1"></div>
+	</div>
+	<div *ngFor="let partner of opp.landscape.partners" class="row">
+		<div class="col-12 col-sm-5">{{partner.firm.name}}</div>
+		<div class="col-1 checkbox">
+            <app-dom-checkbox (click)="partner.exclusive = !partner.exclusive;" 
+                ngDefaultControl [isChecked]="partner.exclusive">
+            </app-dom-checkbox> 
+		</div>
+		<div class="col-1 checkbox">
+			<app-dom-checkbox (click)="partner.signedNda = !partner.signedNda;" 
+                ngDefaultControl [isChecked]="partner.signedNda">
+            </app-dom-checkbox>			
+		</div>
+		<div class="col-1 checkbox">
+			<app-dom-checkbox (click)="partner.signedTa = !partner.signedTa;" 
+                ngDefaultControl [isChecked]="partner.signedTa">
+            </app-dom-checkbox>
+		</div>
+		<div class="col-1">
+			<app-dom-checkbox (click)="toggleWorkshare(partner)" 
+                ngDefaultControl [isChecked]="worshareChecked(partner)">
+            </app-dom-checkbox>						
+		</div>
+		<div class="col-1 checkbox">
+			<app-dom-checkbox (click)="togglePrime(partner)" 
+                ngDefaultControl [isChecked]="primeChecked(partner)">
+            </app-dom-checkbox>
+		</div>
+		<div class="col-1">
+			<button type="button" class="glyph-button" [hidden]="!partner.id" (click)="addNote(partner)">
+				<span class="fa fa-sticky-note-o" aria-hidden="true"></span>
+			</button>
+		</div>
+		<div class="col-1">
+			<button type="button" class="glyph-button" [hidden]="!partner.id" (click)="removePartner(partner)">			
+				<span class="fa fa-trash" aria-hidden="true"></span>
+			</button>			
+		</div>
+	</div>
+</ng-template>	

@@ -1,0 +1,3 @@
+include 'tito-ui-application'
+include 'tito-ui-data'
+include 'tito-ui-test-automation'

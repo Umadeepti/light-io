@@ -1,0 +1,18 @@
+<div *ngIf="dataRetrieved; else loading">
+
+  <div class="input-group">
+      <input #search id="textinput" name="textinput" type="text" placeholder="Search Opportunities" class="form-control"
+    (keyup)="onSearch(search.value)">
+      <span class="input-group-btn">
+        <button class="btn btn-secondary" type="button" (click)="onAddClick()">
+          <i class="fa fa-plus"></i>
+        </button>
+      </span>
+  </div>
+  <ng2-smart-table (userRowSelect)="onUserRowSelect($event)" [settings]="settings" [source]="source"></ng2-smart-table>
+</div>
+<ng-template #loading>
+  <div id="loading">
+    <h1 #message>Retrieving data</h1>
+  </div>
+</ng-template>
